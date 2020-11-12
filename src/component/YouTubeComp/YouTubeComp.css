@@ -1,0 +1,47 @@
+.youtube-wrapper {
+  border: 1px solid grey;
+  display: inline-block;
+  /* padding: 10px; */
+  width: 220px;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+  color: #333;
+}
+
+.thumbnail {
+  background-color: grey;
+  /* border-radius: 10px; */
+  padding: 10px;
+  height: 100px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.thumbnail p {
+  margin: 0;
+  padding: 1px 3px;
+  border-radius: 5px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 0.9em;
+  margin: 20px 0 10px 0;
+}
+
+.desc {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.time {
+  background-color: black;
+  color: white;
+}
+
+.card-body {
+  padding: 0 15px 15px 15px;
+}

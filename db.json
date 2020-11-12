@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "userId": 1,
+      "id": 1604826564974,
+      "title": "Belajar React JS",
+      "body": "Ini adalah tutorial react js untuk front end developer"
+    },
+    {
+      "userId": 1,
+      "id": 1604826747796,
+      "title": "Laravel",
+      "body": "Ayo Nova semangat, kamu pasti bisa menjadi seorang developer handal "
+    },
+    {
+      "userId": 1,
+      "id": 1604827031266,
+      "title": "Code Igniter",
+      "body": "Code Igniter adalah framework PHP yang memudahkan kita untuk membangun website utuh baik front end maupun back end"
+    },
+    {
+      "userId": 1,
+      "id": 1604844269707,
+      "title": "MERN Stack",
+      "body": "MERN merupakan singkatan dari MongoDB, Express.js, React.js, dan Node.js"
+    },
+    {
+      "userId": 1,
+      "id": 1604844892654,
+      "title": "MEAN Stack",
+      "body": "MEAN merupakan singkatan dari MongoDB, Express, Angular, dan Node"
+    },
+    {
+      "userId": 1,
+      "id": 1604845220888,
+      "title": "Atomic Design",
+      "body": "Atomic Design merupakan metode rancangan website untuk meningkatkan efisiensi dan efektifitas"
+    }
+  ]
+}

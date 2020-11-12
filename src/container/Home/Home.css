@@ -1,0 +1,23 @@
+body {
+  margin: 30px;
+}
+.container {
+  margin: 30px;
+}
+ul.navbar {
+  margin: auto;
+  display: flex;
+  list-style-type: none;
+  width: 700px;
+  justify-content: space-between;
+  font-size: 1.2em;
+}
+ul.navbar li a {
+  text-decoration: none;
+  color: #666;
+  transition: 0.3s;
+}
+ul.navbar li a:hover {
+  color: #999;
+  text-decoration: underline;
+}
