@@ -32,9 +32,15 @@
     },
     {
       "userId": 1,
-      "id": 1604845220888,
-      "title": "Atomic Design",
-      "body": "Atomic Design merupakan metode rancangan website untuk meningkatkan efisiensi dan efektifitas"
+      "id": 1606404392429,
+      "title": "Tutorial Service Global API",
+      "body": "Ini adalah tutorial service global API 2"
+    },
+    {
+      "userId": 1,
+      "id": 1606404932844,
+      "title": "Refactoring Service Global 2",
+      "body": "Ini adalah tutorial refactoring service global lorem ipsum dolor sit amet"
     }
   ]
 }

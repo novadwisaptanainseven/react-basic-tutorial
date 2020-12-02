@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import "./BlogPost.css";
 import Post from "../../../component/Post/Post";
-import axios from "axios";
+// import axios from "axios";
+import API from "../../../services";
 
 class BlogPost extends Component {
   state = {
@@ -13,21 +14,33 @@ class BlogPost extends Component {
       body: "",
     },
     isUpdate: false,
+    comments: [],
   };
 
   // Show the post by getting the API
   getPostApi = () => {
-    axios
-      .get("http://localhost:3004/posts?_sort=id&_order=desc")
-      .then((res) => {
-        this.setState({
-          post: res.data,
-        });
+    API.getNewsBlog().then((result) => {
+      this.setState({
+        post: result,
       });
+    });
+    API.getComments().then((result) => {
+      this.setState({
+        comments: result,
+      });
+    });
+    // axios
+    //   .get("http://localhost:3004/posts?_sort=id&_order=desc")
+    //   .then((res) => {
+    //     this.setState({
+    //       post: res.data,
+    //     });
+    //   });
   };
 
   // Add new post
   handleFormChange = (e) => {
+    // console.log(e.target.value);
     let formBlogPostNew = { ...this.state.formBlogPost };
     let timestamp = new Date().getTime();
     if (!this.state.isUpdate) {
@@ -53,10 +66,43 @@ class BlogPost extends Component {
   };
 
   postDataToApi = () => {
-    axios.post(`http://localhost:3004/posts`, this.state.formBlogPost).then(
-      (res) => {
+    API.postNewsBlog(this.state.formBlogPost).then((result) => {
+      this.getPostApi();
+      this.setState({
+        formBlogPost: {
+          userId: 1,
+          id: "",
+          title: "",
+          body: "",
+        },
+      });
+    });
+
+    // axios.post(`http://localhost:3004/posts`, this.state.formBlogPost).then(
+    //   (res) => {
+    //     this.getPostApi();
+    //     this.setState({
+    //       formBlogPost: {
+    //         userId: 1,
+    //         id: "",
+    //         title: "",
+    //         body: "",
+    //       },
+    //     });
+    //   },
+    //   (err) => {
+    //     console.log("Error: ", err);
+    //   }
+    // );
+  };
+
+  // Update data by id
+  putDataToApi = (id) => {
+    API.putNewsBlog(this.state.formBlogPost, id).then(
+      (result) => {
         this.getPostApi();
         this.setState({
+          isUpdate: false,
           formBlogPost: {
             userId: 1,
             id: "",
@@ -69,29 +115,25 @@ class BlogPost extends Component {
         console.log("Error: ", err);
       }
     );
-  };
-
-  // Update data by id
-  putDataToApi = (id) => {
-    axios
-      .put(`http://localhost:3004/posts/${id}`, this.state.formBlogPost)
-      .then(
-        (res) => {
-          this.getPostApi();
-          this.setState({
-            isUpdate: false,
-            formBlogPost: {
-              userId: 1,
-              id: "",
-              title: "",
-              body: "",
-            },
-          });
-        },
-        (err) => {
-          console.log("Error: ", err);
-        }
-      );
+    // axios
+    //   .put(`http://localhost:3004/posts/${id}`, this.state.formBlogPost)
+    //   .then(
+    //     (res) => {
+    //       this.getPostApi();
+    //       this.setState({
+    //         isUpdate: false,
+    //         formBlogPost: {
+    //           userId: 1,
+    //           id: "",
+    //           title: "",
+    //           body: "",
+    //         },
+    //       });
+    //     },
+    //     (err) => {
+    //       console.log("Error: ", err);
+    //     }
+    //   );
   };
 
   handleUpdate = (data) => {
@@ -107,10 +149,14 @@ class BlogPost extends Component {
   };
 
   // Remove the post by id
-  handleRemove = (data) => {
-    axios.delete(`http://localhost:3004/posts/${data}`).then((res) => {
+  handleRemove = (id) => {
+    API.deleteNewsBlog(id).then((result) => {
       this.getPostApi();
     });
+
+    // axios.delete(`http://localhost:3004/posts/${id}`).then((res) => {
+    //   this.getPostApi();
+    // });
   };
 
   // Redirect to detail page
@@ -157,6 +203,18 @@ class BlogPost extends Component {
               Save
             </button>
           </div>
+          {/* {this.state.comments.map((comment) => {
+            return (
+              <div>
+                <p>
+                  <b>Name:</b> {comment.name}
+                </p>
+                <p>
+                  <b>Email:</b> {comment.email}
+                </p>
+              </div>
+            );
+          })} */}
           {this.state.post.map((post, index) => {
             return (
               <Post

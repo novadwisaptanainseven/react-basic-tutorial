@@ -1,17 +1,20 @@
 import React, { Component, Fragment } from "react";
 import "./Produk.css";
 import CardProduct from "./CardProduct/CardProduct";
+import { connect } from "react-redux";
+import { RootContext } from "../../Home/Home";
+import { GlobalConsumer } from "../../../context/context";
 
 class Produk extends Component {
-  state = {
-    order: 4,
-  };
+  // state = {
+  //   order: 4,
+  // };
 
-  handleCounterChange = (newValue) => {
-    this.setState({
-      order: newValue,
-    });
-  };
+  // handleCounterChange = (newValue) => {
+  //   this.setState({
+  //     order: newValue,
+  //   });
+  // };
 
   render() {
     return (
@@ -24,7 +27,7 @@ class Produk extends Component {
           </div>
           <div className="troley">
             <div className="icon"></div>
-            <div className="counter">{this.state.order}</div>
+            <div className="counter">{this.props.state.totalOrder}</div>
           </div>
         </div>
         <CardProduct
@@ -35,4 +38,12 @@ class Produk extends Component {
   }
 }
 
-export default Produk;
+// Memanggil State Global
+const mapStateToProps = (state) => {
+  return {
+    order: state.totalOrder,
+  };
+};
+
+// export default connect(mapStateToProps)(Produk);
+export default GlobalConsumer(Produk);

@@ -1,5 +1,5 @@
 // Libraries
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, createContext } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Style CSS
@@ -11,14 +11,13 @@ import Produk from "../pages/Produk/Produk";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
 import BlogPost from "../pages/BlogPost/BlogPost";
 import DetailPost from "../pages/BlogPost/DetailPost/DetailPost";
+import GlobalProvider from "../../context/context";
+import Hooks from "../pages/Hooks/Hooks";
+
+export const RootContext = createContext();
+// const Provider = RootContext.Provider;
 
 class Home extends Component {
-  state = {
-    showComponent: true,
-  };
-
-  componentDidMount() {}
-
   render() {
     return (
       <Router>
@@ -36,6 +35,9 @@ class Home extends Component {
             <li>
               <Link to="/lifecyclecomp">Life Cycle Component</Link>
             </li>
+            <li>
+              <Link to="/hooks">Hooks</Link>
+            </li>
           </ul>
 
           <Route path="/" exact component={BlogPost} />
@@ -43,10 +45,11 @@ class Home extends Component {
           <Route path="/youtube" component={Youtube} />
           <Route path="/lifecyclecomp" component={LifeCycleComp} />
           <Route path="/detail-post/:postId" component={DetailPost} />
+          <Route path="/hooks" component={Hooks} />
         </Fragment>
       </Router>
     );
   }
 }
 
-export default Home;
+export default GlobalProvider(Home);
